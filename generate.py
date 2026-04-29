@@ -33,7 +33,7 @@ BETWEEN_ROUNDS_REST = 60  # seconds of rest between rounds
 ROUTINE = [
     {
         "name": "Wall push-ups",
-        "reps": "8 to 12 reps",
+        "reps": "10 reps",
         "reps_time": 45,
         "setup":   "Stand facing the wall, hands shoulder-width apart at chest height.",
         "go_cue":  "Breathe out as you push away from the wall.",
@@ -51,7 +51,7 @@ ROUTINE = [
     },
     {
         "name": "Shoulder press",
-        "reps": "8 to 10 reps",
+        "reps": "10 reps",
         "reps_time": 40,
         "setup":   "Hold dumbbells at shoulder height, palms facing forward.",
         "go_cue":  "Press straight up. Exhale on the way up, inhale on the way down.",
@@ -60,7 +60,7 @@ ROUTINE = [
     },
     {
         "name": "Bicep curls",
-        "reps": "10 to 12 reps",
+        "reps": "10 reps",
         "reps_time": 40,
         "setup":   "Stand tall, dumbbells at your sides, palms facing forward.",
         "go_cue":  "Curl up slowly. Keep your elbows tucked in at your sides.",
@@ -69,7 +69,7 @@ ROUTINE = [
     },
     {
         "name": "Plank",
-        "reps": "20 to 30 seconds",
+        "reps": "30 seconds",
         "reps_time": 30,
         "setup":   "Get into a forearm plank or high plank on your hands.",
         "go_cue":  "Squeeze your core. Keep your hips level. Breathe normally.",
@@ -87,7 +87,7 @@ ROUTINE = [
     },
     {
         "name": "Wall sit",
-        "reps": "20 to 30 seconds",
+        "reps": "30 seconds",
         "reps_time": 30,
         "setup":   "Back flat against the wall. Slide down until your knees are at 90 degrees.",
         "go_cue":  "Hold steady. Easy to moderate effort. Keep breathing.",
@@ -96,7 +96,7 @@ ROUTINE = [
     },
     {
         "name": "Calf raises",
-        "reps": "12 to 15 reps",
+        "reps": "15 reps",
         "reps_time": 50,
         "setup":   "Stand tall near a wall for balance if needed. Feet hip-width apart.",
         "go_cue":  "Rise up slowly... and lower slowly. Control both directions.",

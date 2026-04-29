@@ -28,7 +28,7 @@ BETWEEN_ROUNDS_REST = 60
 ROUTINE = [
     {
         "name": "Chest press",
-        "reps": "8 to 12 reps",
+        "reps": "10 reps",
         "reps_time": 45,
         "setup":   "Lie on your back with dumbbells at chest height, elbows at 45 degrees. Or get into a push-up position if you prefer.",
         "go_cue":  "Press up and breathe out. Lower slowly on the way back down.",
@@ -37,7 +37,7 @@ ROUTINE = [
     },
     {
         "name": "Tricep extension",
-        "reps": "10 to 12 reps",
+        "reps": "10 reps",
         "reps_time": 40,
         "setup":   "Hold one dumbbell with both hands above your head, arms fully extended. Use a light to moderate weight.",
         "go_cue":  "Lower the weight slowly behind your head. Keep your elbows pointing forward, close together.",
@@ -55,8 +55,8 @@ ROUTINE = [
     },
     {
         "name": "Farmer carry",
-        "reps": "30 to 45 seconds",
-        "reps_time": 40,
+        "reps": "45 seconds",
+        "reps_time": 45,
         "setup":   "Pick up both dumbbells. Stand tall — shoulders back, core tight.",
         "go_cue":  "Walk slowly around your space. Breathe naturally. No slouching.",
         "mid_cue": "Keep walking. Tall posture. Shoulders down and back.",
@@ -64,7 +64,7 @@ ROUTINE = [
     },
     {
         "name": "Side plank",
-        "reps": "15 to 25 seconds each side",
+        "reps": "25 seconds each side",
         "reps_time": 50,
         "setup":   "Lie on your side, prop up on your forearm. Stack your feet or stagger them for balance.",
         "go_cue":  "Lift your hips. Body in a straight line from head to feet. Breathe normally.",
@@ -91,7 +91,7 @@ ROUTINE = [
     },
     {
         "name": "Wall sit",
-        "reps": "20 to 30 seconds",
+        "reps": "30 seconds",
         "reps_time": 30,
         "setup":   "Back flat against the wall. Slide down until your knees are at 90 degrees, feet shoulder-width apart.",
         "go_cue":  "Hold steady. Easy to moderate effort. Keep breathing.",
