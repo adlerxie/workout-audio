@@ -97,7 +97,7 @@ ROUTINE = [
     {
         "name": "Calf raises",
         "reps": "15 reps",
-        "reps_time": 50,
+        "reps_time": 60,
         "setup":   "Stand tall near a wall for balance if needed. Feet hip-width apart.",
         "go_cue":  "Rise up slowly... and lower slowly. Control both directions.",
         "mid_cue": "Nice and slow. Feel the squeeze at the top.",
