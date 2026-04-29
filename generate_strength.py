@@ -27,12 +27,12 @@ BETWEEN_ROUNDS_REST = 60
 
 ROUTINE = [
     {
-        "name": "Chest press",
+        "name": "Push-ups",
         "reps": "10 reps",
         "reps_time": 45,
-        "setup":   "Lie on your back with dumbbells at chest height, elbows at 45 degrees. Or get into a push-up position if you prefer.",
-        "go_cue":  "Press up and breathe out. Lower slowly on the way back down.",
-        "mid_cue": "Good. Steady pace. Breathe out on every push.",
+        "setup":   "Get into a high plank. Hands slightly wider than shoulder-width, arms straight, core tight.",
+        "go_cue":  "Lower your chest to the floor slowly. Breathe in on the way down, breathe out as you push up.",
+        "mid_cue": "Good. Keep your hips level and core engaged. Slow and controlled.",
         "timed":   False,
     },
     {
@@ -40,7 +40,7 @@ ROUTINE = [
         "reps": "10 reps",
         "reps_time": 40,
         "setup":   "Hold one dumbbell with both hands above your head, arms fully extended. Use a light to moderate weight.",
-        "go_cue":  "Lower the weight slowly behind your head. Keep your elbows pointing forward, close together.",
+        "go_cue":  "Lower the weight slowly behind your head. Elbows pointing up, close to your ears. Don't let them flare out.",
         "mid_cue": "Good. Light weight, full range. Elbows stay in.",
         "timed":   False,
     },
