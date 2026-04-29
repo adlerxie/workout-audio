@@ -18,7 +18,7 @@ from pydub import AudioSegment
 # ── Config ────────────────────────────────────────────────────────────────────
 
 MUSIC_FOLDER  = "background music"
-OUTPUT_FILE   = "workout_strength.mp3"
+OUTPUT_FILE   = "workout_b.mp3"
 MUSIC_VOLUME  = -18
 ROUNDS        = 2
 BETWEEN_ROUNDS_REST = 60
