@@ -11,7 +11,8 @@ Complement to running — building toward 10K.
 | Time  | Activity |
 |-------|----------|
 | 6:30  | Wake up, BP check (2 min) |
-| 6:40  | Garden + plan the day |
+| 6:35  | 10 min meditation (stress/cortisol reduction — directly lowers BP) |
+| 6:45  | Garden |
 | 7:30  | Child duty |
 | 8:00  | Breakfast |
 | 9:30  | Work block 1 |
@@ -21,13 +22,30 @@ Complement to running — building toward 10K.
 | 4:45  | Shower |
 | 5:00  | Wind down |
 | 6:00  | Dinner + child duty |
-| 9:00  | Optional light work (email, planning only — no deep focus) |
+| 9:00  | Diary, reflection + plan tomorrow (no deep work) |
 | 11:00 | Sleep |
 
-**Three daily anchors — non-negotiable:**
-1. **6:30** — Garden + plan
-2. **1:00** — Lunch + walk
-3. **4:00** — Exercise
+**Two non-negotiables:**
+1. **4:00** — Exercise
+2. **Before 11:00** — Sleep
+
+**Typical day:**
+
+| Time | Activity |
+|------|----------|
+| 6:30 | Wake up, BP check |
+| 6:35 | Meditation (10 min) |
+| 6:45 | Garden |
+| 7:30 | Child duty |
+| 8:00 | Breakfast |
+| 9:30 | Work |
+| 1:00 | Lunch + short walk |
+| 2:00 | Work |
+| 4:00 | Exercise |
+| 4:45 | Shower |
+| 6:00 | Dinner + child duty |
+| 9:00 | Diary, reflection, plan tomorrow |
+| 11:00 | Sleep |
 
 ---
 

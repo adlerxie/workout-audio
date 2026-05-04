@@ -5,3 +5,6 @@ __pycache__/
 *.pyc
 .DS_Store
 gif_cache/
+docs/workout planning book/book_pages/
+docs/workout planning book/*.zip
+docs/workout planning book/index_extracted/
