@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adler's Routine</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; color: #222; }
+
+    nav { display: flex; background: #1a1a1a; position: sticky; top: 0; z-index: 10; }
+    nav button {
+      flex: 1; padding: 14px 4px; background: none; border: none; color: #aaa;
+      font-size: 13px; cursor: pointer; border-bottom: 3px solid transparent;
+    }
+    nav button.active { color: #fff; border-bottom-color: #4caf50; }
+
+    .tab { display: none; padding: 16px; max-width: 600px; margin: 0 auto; }
+    .tab.active { display: block; }
+
+    h2 { font-size: 18px; margin-bottom: 12px; color: #111; }
+    h3 { font-size: 15px; margin: 20px 0 8px; color: #333; }
+
+    .card { background: #fff; border-radius: 10px; padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+
+    .anchor { background: #1a1a1a; color: #fff; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .anchor p { font-size: 15px; margin: 4px 0; }
+    .anchor span { color: #4caf50; font-weight: bold; }
+
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 9px 4px; border-bottom: 1px solid #eee; font-size: 14px; vertical-align: top; }
+    td:first-child { color: #888; width: 52px; font-size: 13px; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+
+    .week-day { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .week-day:last-child { border-bottom: none; }
+    .day-name { width: 40px; font-weight: 600; color: #888; font-size: 13px; }
+    .day-type { flex: 1; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .run { background: #e3f2fd; color: #1565c0; }
+    .strength { background: #e8f5e9; color: #2e7d32; }
+    .free { background: #f5f5f5; color: #888; }
+    .optional { background: #fff3e0; color: #e65100; }
+
+    .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #4caf50; margin: 18px 0 6px; letter-spacing: 0.5px; }
+    .exercise-item { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .exercise-item:last-child { border-bottom: none; }
+    .ex-name { font-weight: 600; }
+    .ex-detail { color: #888; font-size: 13px; margin-top: 2px; }
+
+    .week-row { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; align-items: flex-start; }
+    .week-row:last-child { border-bottom: none; }
+    .wk { width: 36px; font-weight: 700; color: #888; flex-shrink: 0; }
+    .wk-desc { flex: 1; }
+    .wk-note { color: #888; font-size: 12px; margin-top: 2px; }
+
+    .rule { padding: 7px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .rule:last-child { border-bottom: none; }
+    .rule::before { content: "· "; color: #4caf50; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <button class="active" onclick="show('schedule')">Schedule</button>
+  <button onclick="show('week')">Week</button>
+  <button onclick="show('workouts')">Workouts</button>
+  <button onclick="show('running')">Running</button>
+</nav>
+
+<!-- SCHEDULE TAB -->
+<div id="schedule" class="tab active">
+  <h2 style="margin-top:4px">Daily Routine</h2>
+
+  <div class="anchor">
+    <p><span>4:00pm</span> — Exercise (non-negotiable)</p>
+    <p><span>11:00pm</span> — Sleep (before this)</p>
+  </div>
+
+  <div class="card">
+    <table>
+      <tr><td>6:30</td><td>Wake up, BP check</td></tr>
+      <tr><td>6:35</td><td>Meditation (10 min)</td></tr>
+      <tr><td>6:45</td><td>Garden</td></tr>
+      <tr><td>7:30</td><td>Child duty</td></tr>
+      <tr><td>8:00</td><td>Breakfast</td></tr>
+      <tr><td>9:30</td><td>Work</td></tr>
+      <tr><td>1:00</td><td>Lunch + short walk (15–20 min)</td></tr>
+      <tr><td>2:00</td><td>Work</td></tr>
+      <tr><td>4:00</td><td><strong>Exercise</strong></td></tr>
+      <tr><td>4:45</td><td>Shower</td></tr>
+      <tr><td>6:00</td><td>Dinner + child duty</td></tr>
+      <tr><td>9:00</td><td>Diary, reflection, plan tomorrow</td></tr>
+      <tr><td>11:00</td><td>Sleep</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-label">BP Tracking</div>
+    <div class="rule">Check every morning before coffee, same time, same arm</div>
+    <div class="rule">Log it — look for the trend, not individual readings</div>
+    <div class="rule">Target: diastolic below 80</div>
+    <div class="rule">If readings spike 3+ days in a row, reduce intensity that week</div>
+  </div>
+</div>
+
+<!-- WEEK TAB -->
+<div id="week" class="tab">
+  <h2 style="margin-top:4px">Weekly Plan</h2>
+
+  <div class="card">
+    <div class="week-day"><div class="day-name">Mon</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
+    <div class="week-day"><div class="day-name">Tue</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Session 1 Lower</div></div>
+    <div class="week-day"><div class="day-name">Wed</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
+    <div class="week-day"><div class="day-name">Thu</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Session 2 Upper</div></div>
+    <div class="week-day"><div class="day-name">Fri</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
+    <div class="week-day"><div class="day-name">Sat</div><div class="day-type"><span class="badge free">Free</span></div></div>
+    <div class="week-day"><div class="day-name">Sun</div><div class="day-type"><span class="badge optional">Optional</span> — Session 3 Total Body</div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Run Rules</div>
+    <div class="rule">Conversational pace — if you can't talk, slow down</div>
+    <div class="rule">Don't run after heavy leg day if knees are sore</div>
+    <div class="rule">If BP above 140/90 consistently, walk only that week</div>
+    <div class="rule">Increase long run max 10% per week</div>
+  </div>
+</div>
+
+<!-- WORKOUTS TAB -->
+<div id="workouts" class="tab">
+  <h2 style="margin-top:4px">Strength Sessions</h2>
+
+  <div class="card">
+    <div class="section-label">Rules</div>
+    <div class="rule">2–3 sets, 8–10 reps</div>
+    <div class="rule">75 sec rest between sets</div>
+    <div class="rule">Breathe normally — never hold breath</div>
+    <div class="rule">Start light, increase slowly</div>
+    <div class="rule">Stop if dizzy, chest pain, or strong headache</div>
+  </div>
+
+  <div class="card">
+    <h3>Session 1 — Lower Body: Hip Dominant <span style="color:#888;font-weight:400">(Tue)</span></h3>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise-item"><div class="ex-name">Straight-leg kicks</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Butt kicks</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">World's greatest stretch</div><div class="ex-detail">50s</div></div>
+    <div class="exercise-item"><div class="ex-name">Plank</div><div class="ex-detail">30s</div></div>
+
+    <div class="section-label">Main</div>
+    <div class="exercise-item"><div class="ex-name">Deadlift</div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Step-ups</div><div class="ex-detail">3 × 8 each leg</div></div>
+    <div class="exercise-item"><div class="ex-name">Glute bridge</div><div class="ex-detail">3 × 12</div></div>
+    <div class="exercise-item"><div class="ex-name">Good morning</div><div class="ex-detail">2 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Wall sit</div><div class="ex-detail">3 × 30s</div></div>
+
+    <div class="section-label">Cooldown</div>
+    <div class="exercise-item"><div class="ex-name">Pretzel stretch</div><div class="ex-detail">60s (both sides)</div></div>
+    <div class="exercise-item"><div class="ex-name">Seated toe touch</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing calf stretch</div><div class="ex-detail">60s (both sides)</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing quad stretch</div><div class="ex-detail">60s (both sides)</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Session 2 — Upper Body: Push <span style="color:#888;font-weight:400">(Thu)</span></h3>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise-item"><div class="ex-name">Cross-body arm swing</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Shoulder rolls</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Up-down plank</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">T-spine rotation</div><div class="ex-detail">30s</div></div>
+
+    <div class="section-label">Main</div>
+    <div class="exercise-item"><div class="ex-name">Push-ups</div><div class="ex-detail">3 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Dumbbell shoulder press</div><div class="ex-detail">3 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing tricep extension</div><div class="ex-detail">3 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Chest fly</div><div class="ex-detail">2 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Plank</div><div class="ex-detail">3 × 30s</div></div>
+
+    <div class="section-label">Cooldown</div>
+    <div class="exercise-item"><div class="ex-name">Chest stretch</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing biceps stretch</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Child's pose</div><div class="ex-detail">45s</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Session 3 — Total Body / Core <span style="color:#888;font-weight:400">(Sun optional)</span></h3>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise-item"><div class="ex-name">Butt kicks</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">T-spine rotation</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Squat jack</div><div class="ex-detail">30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Knee hugs</div><div class="ex-detail">30s</div></div>
+
+    <div class="section-label">Main</div>
+    <div class="exercise-item"><div class="ex-name">Dead bug</div><div class="ex-detail">3 × 10 each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Goblet squat</div><div class="ex-detail">3 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Glute bridge</div><div class="ex-detail">3 × 12</div></div>
+    <div class="exercise-item"><div class="ex-name">Dumbbell row</div><div class="ex-detail">3 × 10 each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Wall sit</div><div class="ex-detail">3 × 30s</div></div>
+
+    <div class="section-label">Cooldown</div>
+    <div class="exercise-item"><div class="ex-name">Cat-cow</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">T-spine rotation</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Child's pose</div><div class="ex-detail">45s</div></div>
+  </div>
+</div>
+
+<!-- RUNNING TAB -->
+<div id="running" class="tab">
+  <h2 style="margin-top:4px">12-Week 10K Program</h2>
+  <p style="color:#888;font-size:13px;margin-bottom:12px">Mon / Wed / Fri at 4pm</p>
+
+  <div class="card">
+    <div class="week-row"><div class="wk">1–2</div><div class="wk-desc">Walk 20 min, run 1 min every 5 min<div class="wk-note">Easy — just get moving</div></div></div>
+    <div class="week-row"><div class="wk">3–4</div><div class="wk-desc">Run 2 min / walk 3 min × 6<div class="wk-note">Build the rhythm</div></div></div>
+    <div class="week-row"><div class="wk">5–6</div><div class="wk-desc">Run 5 min / walk 2 min × 4<div class="wk-note">First real running</div></div></div>
+    <div class="week-row"><div class="wk">7–8</div><div class="wk-desc">Run 10 min / walk 1 min × 3<div class="wk-note">Build endurance</div></div></div>
+    <div class="week-row"><div class="wk">9–10</div><div class="wk-desc">Run 15 min / walk 1 min × 2 + long run 35–40 min Fri<div class="wk-note">Near 5K</div></div></div>
+    <div class="week-row"><div class="wk">11</div><div class="wk-desc">Run 20 min continuous + long run 45 min Fri<div class="wk-note">5K territory</div></div></div>
+    <div class="week-row"><div class="wk">12</div><div class="wk-desc">Run 25 min + 10K attempt Fri<div class="wk-note">Goal race</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Rules</div>
+    <div class="rule">Conversational pace — if you can't talk, slow down</div>
+    <div class="rule">Don't run after heavy leg day if knees are sore</div>
+    <div class="rule">If BP above 140/90 consistently, walk only that week</div>
+    <div class="rule">Increase long run max 10% per week</div>
+  </div>
+</div>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
