@@ -41,7 +41,7 @@ SESSIONS = [
             },
             {
                 "name": "World's greatest stretch",
-                "duration": 40,
+                "duration": 50,
                 "cue": "Step into a lunge, plant your hand beside your foot, and reach your other arm up to the sky. Alternate sides slowly.",
             },
             {
@@ -54,7 +54,7 @@ SESSIONS = [
             {
                 "name":     "Deadlift",
                 "reps":     "8 reps",
-                "reps_time": 35,
+                "reps_time": 45,
                 "sets":     3,
                 "setup":    "Stand with feet hip-width apart. Dumbbells in front of your thighs, soft bend in the knees, back flat.",
                 "go_cue":   "Hinge at the hips, lower the weights along your legs, then drive through your heels to stand tall.",
@@ -105,7 +105,7 @@ SESSIONS = [
         "cooldown": [
             {
                 "name": "Pretzel stretch",
-                "duration": 45,
+                "duration": 60,
                 "cue": "Lie on your back. Cross one ankle over the opposite knee and gently pull both legs toward your chest. Hold. Switch sides halfway.",
             },
             {
@@ -115,12 +115,12 @@ SESSIONS = [
             },
             {
                 "name": "Standing calf stretch",
-                "duration": 40,
+                "duration": 60,
                 "cue": "Step one foot back, heel flat on the floor, front knee bent. Lean into the wall. Hold. Switch sides halfway.",
             },
             {
                 "name": "Standing quad stretch",
-                "duration": 40,
+                "duration": 60,
                 "cue": "Stand on one leg, pull the other heel toward your glute. Hold onto a wall if needed. Switch sides halfway.",
             },
         ],
