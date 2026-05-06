@@ -37,10 +37,9 @@
     .day-name { width: 40px; font-weight: 600; color: #888; font-size: 13px; }
     .day-type { flex: 1; }
     .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-    .run { background: #e3f2fd; color: #1565c0; }
     .strength { background: #e8f5e9; color: #2e7d32; }
-    .free { background: #f5f5f5; color: #888; }
-    .optional { background: #fff3e0; color: #e65100; }
+    .rest { background: #f5f5f5; color: #888; }
+    .walk { background: #e3f2fd; color: #1565c0; }
 
     .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #4caf50; margin: 18px 0 6px; letter-spacing: 0.5px; }
     .exercise-item { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
@@ -53,12 +52,7 @@
     .tag-core { background: #e8eaf6; color: #283593; }
     .tag-apt { background: #fff8e1; color: #e65100; }
     .tag-iso { background: #e8f5e9; color: #1b5e20; }
-
-    .week-row { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; align-items: flex-start; }
-    .week-row:last-child { border-bottom: none; }
-    .wk { width: 36px; font-weight: 700; color: #888; flex-shrink: 0; }
-    .wk-desc { flex: 1; }
-    .wk-note { color: #888; font-size: 12px; margin-top: 2px; }
+    .tag-light { background: #f3e5f5; color: #6a1b9a; }
 
     .rule { padding: 7px 0; border-bottom: 1px solid #eee; font-size: 14px; }
     .rule:last-child { border-bottom: none; }
@@ -71,7 +65,7 @@
   <button class="active" onclick="show('schedule')">Schedule</button>
   <button onclick="show('week')">Week</button>
   <button onclick="show('workouts')">Workouts</button>
-  <button onclick="show('running')">Running</button>
+  <button onclick="show('walking')">Walking</button>
 </nav>
 
 <!-- SCHEDULE TAB -->
@@ -79,22 +73,19 @@
   <h2 style="margin-top:4px">Daily Routine</h2>
 
   <div class="anchor">
-    <p><span>4:00pm</span> — Exercise (non-negotiable)</p>
+    <p><span>7:00am</span> — Exercise (non-negotiable)</p>
     <p><span>11:00pm</span> — Sleep (before this)</p>
   </div>
 
   <div class="card">
     <table>
-      <tr><td>6:30</td><td>Wake up, BP check</td></tr>
-      <tr><td>6:35</td><td>Meditation (10 min)</td></tr>
-      <tr><td>6:45</td><td>Garden</td></tr>
-      <tr><td>7:30</td><td>Child duty</td></tr>
-      <tr><td>8:00</td><td>Breakfast</td></tr>
+      <tr><td>7:00</td><td><strong>Wake up, BP check</strong></td></tr>
+      <tr><td>7:05</td><td><strong>Exercise (45 min)</strong></td></tr>
+      <tr><td>7:50</td><td>Shower</td></tr>
+      <tr><td>8:30</td><td>Breakfast</td></tr>
       <tr><td>9:30</td><td>Work</td></tr>
       <tr><td>1:00</td><td>Lunch + short walk (15–20 min)</td></tr>
       <tr><td>2:00</td><td>Work</td></tr>
-      <tr><td>4:00</td><td><strong>Exercise</strong></td></tr>
-      <tr><td>4:45</td><td>Shower</td></tr>
       <tr><td>6:00</td><td>Dinner + child duty</td></tr>
       <tr><td>9:00</td><td>Diary, reflection, plan tomorrow</td></tr>
       <tr><td>11:00</td><td>Sleep</td></tr>
@@ -115,21 +106,29 @@
   <h2 style="margin-top:4px">Weekly Plan</h2>
 
   <div class="card">
-    <div class="week-day"><div class="day-name">Mon</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
-    <div class="week-day"><div class="day-name">Tue</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Session 1 Lower</div></div>
-    <div class="week-day"><div class="day-name">Wed</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
-    <div class="week-day"><div class="day-name">Thu</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Session 2 Upper</div></div>
-    <div class="week-day"><div class="day-name">Fri</div><div class="day-type"><span class="badge run">Run/Walk 35 min</span></div></div>
-    <div class="week-day"><div class="day-name">Sat</div><div class="day-type"><span class="badge free">Free</span></div></div>
-    <div class="week-day"><div class="day-name">Sun</div><div class="day-type"><span class="badge optional">Optional</span> — Session 3 Total Body</div></div>
+    <div class="week-day"><div class="day-name">Mon</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Back &amp; Biceps</div></div>
+    <div class="week-day"><div class="day-name">Tue</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Hip Dominant</div></div>
+    <div class="week-day"><div class="day-name">Wed</div><div class="day-type"><span class="badge rest">Rest</span></div></div>
+    <div class="week-day"><div class="day-name">Thu</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Chest, Shoulders &amp; Triceps</div></div>
+    <div class="week-day"><div class="day-name">Fri</div><div class="day-type"><span class="badge strength">Strength 45 min</span> — Knee Dominant &amp; Core</div></div>
+    <div class="week-day"><div class="day-name">Sat</div><div class="day-type"><span class="badge rest">Rest</span></div></div>
+    <div class="week-day"><div class="day-name">Sun</div><div class="day-type"><span class="badge rest">Rest</span></div></div>
   </div>
 
   <div class="card">
-    <div class="section-label">Run Rules</div>
-    <div class="rule">Conversational pace — if you can't talk, slow down</div>
-    <div class="rule">Don't run after heavy leg day if knees are sore</div>
-    <div class="rule">If BP above 140/90 consistently, walk only that week</div>
-    <div class="rule">Increase long run max 10% per week</div>
+    <div class="section-label">Daily Walking</div>
+    <div class="rule">Brisk walk every day — any time, any length</div>
+    <div class="rule">Counts as active recovery on rest days</div>
+    <div class="rule">Lunch walk (1pm) is a good anchor if no other time</div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Strength Rules</div>
+    <div class="rule">3–5 sets · 5–8 reps · 3 sec each direction</div>
+    <div class="rule">1–2 min rest between sets</div>
+    <div class="rule">Breathe normally — never hold breath</div>
+    <div class="rule">Start light, increase slowly</div>
+    <div class="rule">Stop if dizzy, chest pain, or strong headache</div>
   </div>
 </div>
 
@@ -137,119 +136,126 @@
 <div id="workouts" class="tab">
   <h2 style="margin-top:4px">Strength Sessions</h2>
 
+  <!-- SESSION 1 -->
   <div class="card">
-    <div class="section-label">Rules</div>
-    <div class="rule">3–5 sets, 5–8 reps · 3 sec each direction</div>
-    <div class="rule">1–2 min rest between sets</div>
-    <div class="rule">Breathe normally — never hold breath</div>
-    <div class="rule">Start light, increase slowly</div>
-    <div class="rule">Stop if dizzy, chest pain, or strong headache</div>
-  </div>
-
-  <div class="card">
-    <h3>Session 1 — Lower Body: Glute &amp; Core <span style="color:#888;font-weight:400">(Tue)</span></h3>
-    <p style="font-size:12px;color:#888;margin-bottom:8px">Phase 1 (6 weeks) — APT correction. No deadlifts until posture improves.</p>
-
-    <div class="section-label">Warm-up — no rest between moves</div>
-    <div class="exercise-item"><div class="ex-name">Cat-cow<span class="ex-page">p.90</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">World's greatest stretch<span class="ex-page">p.28</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Butt kicker<span class="ex-page">p.48</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Straight-leg kick<span class="ex-page">p.26</span></div><div class="ex-detail">30–60s</div></div>
-
-    <div class="section-label">Main — 1–2 min rest between sets</div>
-    <div class="exercise-item"><div class="ex-name">Dead bug<span class="ex-page">p.112</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 10 each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Glute bridge<span class="ex-page">p.34</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 15</div></div>
-    <div class="exercise-item"><div class="ex-name">Single-leg glute bridge<span class="ex-page">p.36</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 8 each leg</div></div>
-    <div class="exercise-item"><div class="ex-name">Step-up<span class="ex-page">p.38</span></div><div class="ex-detail">3 × 8 each leg</div></div>
-    <div class="exercise-item"><div class="ex-name">Goblet squat<span class="ex-page">p.50</span></div><div class="ex-detail">3 × 8</div></div>
-    <div class="exercise-item"><div class="ex-name">Plank<span class="ex-page">p.104</span><span class="ex-tag tag-core">core</span></div><div class="ex-detail">3 × 30s</div></div>
-    <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 45s</div></div>
-
-    <div class="section-label">Cooldown — focus on hip flexors</div>
-    <div class="exercise-item"><div class="ex-name">Standing quad stretch<span class="ex-page">p.66</span></div><div class="ex-detail">60s each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Pretzel stretch<span class="ex-page">p.42</span></div><div class="ex-detail">60s each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Child's pose<span class="ex-page">p.100</span></div><div class="ex-detail">60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Seated toe touch<span class="ex-page">p.44</span></div><div class="ex-detail">45s</div></div>
-  </div>
-
-  <div class="card">
-    <h3>Session 2 — Upper Body: Total Upper <span style="color:#888;font-weight:400">(Thu)</span></h3>
-    <p style="font-size:12px;color:#888;margin-bottom:8px">Book: Upper-Body Workout 2 · p.160</p>
+    <h3>Session 1 — Back &amp; Biceps <span style="color:#888;font-weight:400">(Mon)</span></h3>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Book: Upper-Body Workout 1</p>
 
     <div class="section-label">Warm-up — no rest between moves</div>
     <div class="exercise-item"><div class="ex-name">Cross-body arm swing<span class="ex-page">p.138</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Up-down plank<span class="ex-page">p.120</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Scaption plank<span class="ex-page">p.70</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Shoulder rolls</div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Scorpion plank<span class="ex-page">p.70</span></div><div class="ex-detail">30–60s</div></div>
     <div class="exercise-item"><div class="ex-name">T-spine rotation<span class="ex-page">p.82</span></div><div class="ex-detail">30–60s</div></div>
 
     <div class="section-label">Main — 1–2 min rest between sets</div>
-    <div class="exercise-item"><div class="ex-name">Dumbbell chest fly<span class="ex-page">p.74</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Dumbbell row</div><div class="ex-detail">3 × 8 each side</div></div>
     <div class="exercise-item"><div class="ex-name">Farmer's carry<span class="ex-page">p.88</span></div><div class="ex-detail">3 × 8</div></div>
-    <div class="exercise-item"><div class="ex-name">Iron cross<span class="ex-page">p.144</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Good morning<span class="ex-tag tag-light">light</span></div><div class="ex-detail">3 × 8 — hinge focus, feel the hamstring stretch</div></div>
+    <div class="exercise-item"><div class="ex-name">Bicep curl</div><div class="ex-detail">3 × 8</div></div>
     <div class="exercise-item"><div class="ex-name">Hammer curl<span class="ex-page">p.124</span></div><div class="ex-detail">3 × 8</div></div>
-    <div class="exercise-item"><div class="ex-name">Tricep overhead extension<span class="ex-page">p.128</span></div><div class="ex-detail">3 × 8</div></div>
-    <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span></div><div class="ex-detail">3 × 30s</div></div>
-
-    <div class="section-label">Cooldown — no rest between moves</div>
-    <div class="exercise-item"><div class="ex-name">Cat-cow<span class="ex-page">p.90</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Child's pose<span class="ex-page">p.100</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">T-spine rotation<span class="ex-page">p.82</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Wall stretch<span class="ex-page">p.78</span></div><div class="ex-detail">30–60s</div></div>
-  </div>
-
-  <div class="card">
-    <h3>Session 3 — Full Body: Isometric &amp; Corrective <span style="color:#888;font-weight:400">(Sun optional)</span></h3>
-    <p style="font-size:12px;color:#888;margin-bottom:8px">Hold tension, no heavy load. Fixes APT + trains BP. ~40 min.</p>
-
-    <div class="section-label">Warm-up — no rest between moves</div>
-    <div class="exercise-item"><div class="ex-name">Cat-cow<span class="ex-page">p.90</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">World's greatest stretch<span class="ex-page">p.28</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">T-spine rotation<span class="ex-page">p.82</span></div><div class="ex-detail">30–60s</div></div>
-    <div class="exercise-item"><div class="ex-name">Butt kicker<span class="ex-page">p.48</span></div><div class="ex-detail">30–60s</div></div>
-
-    <div class="section-label">Upper — hold, don't move</div>
-    <div class="exercise-item"><div class="ex-name">Wall push<span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 30s — press palms flat into wall, hold</div></div>
-    <div class="exercise-item"><div class="ex-name">Superman hold<span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 30s — face down, lift arms + legs, hold</div></div>
-
-    <div class="section-label">Core</div>
-    <div class="exercise-item"><div class="ex-name">Dead bug<span class="ex-page">p.112</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 10 each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Hollow-body hold<span class="ex-page">p.108</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 20s</div></div>
-    <div class="exercise-item"><div class="ex-name">Side bridge<span class="ex-page">p.106</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 20s each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Plank<span class="ex-page">p.104</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 30s</div></div>
-
-    <div class="section-label">Lower</div>
-    <div class="exercise-item"><div class="ex-name">Glute bridge hold<span class="ex-page">p.34</span><span class="ex-tag tag-apt">APT</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 30s — squeeze at top, hold</div></div>
     <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 45s</div></div>
 
-    <div class="section-label">Cooldown — hip flexor focus</div>
-    <div class="exercise-item"><div class="ex-name">Standing quad stretch<span class="ex-page">p.66</span></div><div class="ex-detail">60s each side</div></div>
+    <div class="section-label">Cooldown — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Standing biceps stretch</div><div class="ex-detail">45s each side</div></div>
     <div class="exercise-item"><div class="ex-name">Child's pose<span class="ex-page">p.100</span></div><div class="ex-detail">60s</div></div>
+  </div>
+
+  <!-- SESSION 2 -->
+  <div class="card">
+    <h3>Session 2 — Hip Dominant <span style="color:#888;font-weight:400">(Tue)</span></h3>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Book: Lower-Body Workout 1 · no deadlift — replaced with mobility focus</p>
+
+    <div class="section-label">Warm-up — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Straight-leg kick<span class="ex-page">p.26</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">World's greatest stretch<span class="ex-page">p.28</span></div><div class="ex-detail">30–60s each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Butt kicks<span class="ex-page">p.48</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Plank<span class="ex-page">p.104</span></div><div class="ex-detail">30s</div></div>
+
+    <div class="section-label">Main — 1–2 min rest between sets</div>
+    <div class="exercise-item"><div class="ex-name">Step-up<span class="ex-page">p.38</span></div><div class="ex-detail">3 × 8 each leg</div></div>
+    <div class="exercise-item"><div class="ex-name">Lateral step-up</div><div class="ex-detail">3 × 8 each leg</div></div>
+    <div class="exercise-item"><div class="ex-name">Glute bridge<span class="ex-page">p.34</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 12</div></div>
+    <div class="exercise-item"><div class="ex-name">Single-leg RDL<span class="ex-tag tag-light">bodyweight</span></div><div class="ex-detail">3 × 8 each leg — slow, feel the hamstring stretch</div></div>
+    <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 45s</div></div>
+
+    <div class="section-label">Cooldown — no rest between moves</div>
     <div class="exercise-item"><div class="ex-name">Pretzel stretch<span class="ex-page">p.42</span></div><div class="ex-detail">60s each side</div></div>
-    <div class="exercise-item"><div class="ex-name">Wall stretch<span class="ex-page">p.78</span></div><div class="ex-detail">60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Seated toe touch<span class="ex-page">p.44</span></div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing calf stretch</div><div class="ex-detail">60s each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing quad stretch<span class="ex-page">p.66</span></div><div class="ex-detail">60s each side</div></div>
+  </div>
+
+  <!-- SESSION 3 -->
+  <div class="card">
+    <h3>Session 3 — Chest, Shoulders &amp; Triceps <span style="color:#888;font-weight:400">(Thu)</span></h3>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Book: Upper-Body Workout 3</p>
+
+    <div class="section-label">Warm-up — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Cross-body arm swing<span class="ex-page">p.138</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Shoulder rolls</div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Up-down plank<span class="ex-page">p.120</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">T-spine rotation<span class="ex-page">p.82</span></div><div class="ex-detail">30–60s</div></div>
+
+    <div class="section-label">Main — 1–2 min rest between sets</div>
+    <div class="exercise-item"><div class="ex-name">Push-ups</div><div class="ex-detail">3 × 10</div></div>
+    <div class="exercise-item"><div class="ex-name">Dumbbell shoulder press</div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Chest fly<span class="ex-page">p.74</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Tricep overhead extension<span class="ex-page">p.128</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Iron cross<span class="ex-page">p.144</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Plank<span class="ex-page">p.104</span><span class="ex-tag tag-core">core</span></div><div class="ex-detail">3 × 30s</div></div>
+    <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 45s</div></div>
+
+    <div class="section-label">Cooldown — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Chest stretch</div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing biceps stretch</div><div class="ex-detail">45s each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Child's pose<span class="ex-page">p.100</span></div><div class="ex-detail">60s</div></div>
+  </div>
+
+  <!-- SESSION 4 -->
+  <div class="card">
+    <h3>Session 4 — Knee Dominant &amp; Core <span style="color:#888;font-weight:400">(Fri)</span></h3>
+    <p style="font-size:12px;color:#888;margin-bottom:8px">Book: Lower-Body Workout 2 + core</p>
+
+    <div class="section-label">Warm-up — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Straight-leg kick<span class="ex-page">p.26</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Butt kicks<span class="ex-page">p.48</span></div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Squat jack</div><div class="ex-detail">30–60s</div></div>
+    <div class="exercise-item"><div class="ex-name">Knee hugs</div><div class="ex-detail">30–60s</div></div>
+
+    <div class="section-label">Main — 1–2 min rest between sets</div>
+    <div class="exercise-item"><div class="ex-name">Dead bug<span class="ex-page">p.112</span><span class="ex-tag tag-apt">APT</span><span class="ex-tag tag-core">core</span></div><div class="ex-detail">3 × 10 each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Goblet squat<span class="ex-page">p.50</span></div><div class="ex-detail">3 × 8</div></div>
+    <div class="exercise-item"><div class="ex-name">Glute bridge<span class="ex-page">p.34</span><span class="ex-tag tag-apt">APT</span></div><div class="ex-detail">3 × 12</div></div>
+    <div class="exercise-item"><div class="ex-name">Lateral lunge</div><div class="ex-detail">3 × 8 each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Wall sit<span class="ex-tag tag-bp">BP</span><span class="ex-tag tag-iso">iso</span></div><div class="ex-detail">3 × 45s</div></div>
+
+    <div class="section-label">Cooldown — no rest between moves</div>
+    <div class="exercise-item"><div class="ex-name">Pretzel stretch<span class="ex-page">p.42</span></div><div class="ex-detail">60s each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Seated toe touch<span class="ex-page">p.44</span></div><div class="ex-detail">45s</div></div>
+    <div class="exercise-item"><div class="ex-name">Standing calf stretch</div><div class="ex-detail">60s each side</div></div>
+    <div class="exercise-item"><div class="ex-name">Cat-cow<span class="ex-page">p.90</span></div><div class="ex-detail">40s</div></div>
   </div>
 </div>
 
-<!-- RUNNING TAB -->
-<div id="running" class="tab">
-  <h2 style="margin-top:4px">12-Week 10K Program</h2>
-  <p style="color:#888;font-size:13px;margin-bottom:12px">Mon / Wed / Fri at 4pm</p>
+<!-- WALKING TAB -->
+<div id="walking" class="tab">
+  <h2 style="margin-top:4px">Daily Walking</h2>
+  <p style="color:#888;font-size:13px;margin-bottom:12px">Every day — in addition to strength sessions</p>
 
   <div class="card">
-    <div class="week-row"><div class="wk">1–2</div><div class="wk-desc">Walk 20 min, run 1 min every 5 min<div class="wk-note">Easy — just get moving</div></div></div>
-    <div class="week-row"><div class="wk">3–4</div><div class="wk-desc">Run 2 min / walk 3 min × 6<div class="wk-note">Build the rhythm</div></div></div>
-    <div class="week-row"><div class="wk">5–6</div><div class="wk-desc">Run 5 min / walk 2 min × 4<div class="wk-note">First real running</div></div></div>
-    <div class="week-row"><div class="wk">7–8</div><div class="wk-desc">Run 10 min / walk 1 min × 3<div class="wk-note">Build endurance</div></div></div>
-    <div class="week-row"><div class="wk">9–10</div><div class="wk-desc">Run 15 min / walk 1 min × 2 + long run 35–40 min Fri<div class="wk-note">Near 5K</div></div></div>
-    <div class="week-row"><div class="wk">11</div><div class="wk-desc">Run 20 min continuous + long run 45 min Fri<div class="wk-note">5K territory</div></div></div>
-    <div class="week-row"><div class="wk">12</div><div class="wk-desc">Run 25 min + 10K attempt Fri<div class="wk-note">Goal race</div></div></div>
+    <div class="section-label">Goal</div>
+    <div class="rule">Brisk pace — fast enough to feel it, slow enough to talk</div>
+    <div class="rule">20–40 min is enough — longer on rest days if you feel good</div>
+    <div class="rule">No phone, no headphones — let it be mental recovery too</div>
+    <div class="rule">Lunch walk (1pm) works well as a daily anchor</div>
   </div>
 
   <div class="card">
-    <div class="section-label">Rules</div>
-    <div class="rule">Conversational pace — if you can't talk, slow down</div>
-    <div class="rule">Don't run after heavy leg day if knees are sore</div>
-    <div class="rule">If BP above 140/90 consistently, walk only that week</div>
-    <div class="rule">Increase long run max 10% per week</div>
+    <div class="section-label">Why it works for BP</div>
+    <div class="rule">Daily moderate cardio is one of the most effective BP interventions</div>
+    <div class="rule">Consistency matters more than intensity — same time daily is ideal</div>
+    <div class="rule">Walking after meals (especially dinner) lowers post-meal BP spikes</div>
+    <div class="rule">If morning BP is above 140/90, skip strength that day and walk only</div>
   </div>
 </div>
 
