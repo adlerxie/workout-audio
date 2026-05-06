@@ -23,8 +23,8 @@ Outputs 3 MP3 files in the project root:
 | File | Purpose |
 |------|---------|
 | `generate_sessions.py` | Main script — defines all sessions and generates MP3s via gTTS + pydub |
-| `docs/schedule.html` | Interactive weekly schedule — open in browser, 4 tabs: Schedule / Week / Workouts / Running |
-| `docs/routine.md` | Full daily schedule, 12-week running program, BP tracking guidance |
+| `docs/schedule.html` | Interactive weekly schedule — open in browser, 4 tabs: Schedule / Week / Workouts / Walking |
+| `docs/routine.md` | Full daily schedule, BP tracking guidance |
 | `requirements.txt` | Python deps: gtts, pydub, audioop-lts, moviepy, requests, Pillow, numpy |
 | `background music/` | 18 royalty-free tracks available for future music-mixed versions |
 | `archive/` | Previous workout_a / workout_b audio versions |
@@ -42,9 +42,9 @@ Sessions are defined as Python dicts in `SESSIONS` (lines ~27–320). Each exerc
 
 ## Weekly schedule
 
-- Mon / Wed / Fri — cardio (12-week walk/run program building to 10K)
-- Tue / Thu — strength sessions
-- Sun — optional total body session
+- Mon / Tue / Thu / Fri — strength (4 sessions)
+- Wed / Sat / Sun — rest
+- Daily brisk walking in parallel (not scheduled, just a daily habit)
 
 ## Exercise tags in schedule.html
 
@@ -52,6 +52,7 @@ Sessions are defined as Python dicts in `SESSIONS` (lines ~27–320). Each exerc
 - `BP` — Blood Pressure focused (isometric)
 - `Core` — core stability
 - `Iso` — isometric holds
+- `light` — keep weight light (back sensitivity or BP caution)
 
 ## Notes
 
