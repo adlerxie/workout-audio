@@ -1,5 +1,9 @@
 # workout-audio
 
+## Claude instructions
+
+Before every `git commit`, update this CLAUDE.md with any new learnings from the conversation — plan changes, exercise swaps, schedule decisions, user preferences. Then include CLAUDE.md in the commit.
+
 Personal workout audio coaching system. Generates TTS-guided MP3 workout sessions and hosts an interactive weekly schedule website.
 
 ## Goal
