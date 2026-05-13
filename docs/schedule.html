@@ -57,6 +57,35 @@
     .rule { padding: 7px 0; border-bottom: 1px solid #eee; font-size: 14px; }
     .rule:last-child { border-bottom: none; }
     .rule::before { content: "· "; color: #4caf50; }
+
+    /* Calendar */
+    .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .cal-header h2 { margin: 0; }
+    .cal-nav { background: none; border: none; font-size: 22px; cursor: pointer; color: #444; padding: 4px 8px; }
+    .cal-summary { font-size: 13px; color: #888; margin-bottom: 14px; }
+    .cal-summary strong { color: #2e7d32; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+    .cal-dow { text-align: center; font-size: 11px; font-weight: 700; color: #bbb; padding: 4px 0; }
+    .cal-day {
+      aspect-ratio: 1; border-radius: 8px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; position: relative;
+      background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    }
+    .cal-day.strength { cursor: pointer; }
+    .cal-day.strength:active { opacity: 0.7; }
+    .cal-day.rest { background: #f7f7f7; box-shadow: none; }
+    .cal-day.empty { background: none; box-shadow: none; }
+    .cal-day.today { box-shadow: 0 0 0 2px #4caf50; }
+    .cal-day.done { background: #e8f5e9; }
+    .cal-num { font-size: 13px; font-weight: 600; color: #222; line-height: 1; }
+    .cal-day.rest .cal-num { color: #ccc; }
+    .cal-day.done .cal-num { color: #2e7d32; }
+    .cal-label { font-size: 8px; color: #aaa; margin-top: 2px; text-align: center; }
+    .cal-day.done .cal-label { color: #81c784; }
+    .cal-check { position: absolute; top: 2px; right: 4px; font-size: 9px; color: #4caf50; font-weight: 700; }
+    .cal-saving { font-size: 12px; color: #aaa; text-align: center; margin-top: 10px; min-height: 18px; }
+    .cal-token { margin-top: 12px; text-align: right; }
+    .cal-token button { background: none; border: none; font-size: 11px; color: #bbb; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -66,6 +95,7 @@
   <button onclick="show('week')">Week</button>
   <button onclick="show('workouts')">Workouts</button>
   <button onclick="show('walking')">Walking</button>
+  <button onclick="show('log'); initCal()">Log</button>
 </nav>
 
 <!-- SCHEDULE TAB -->
@@ -259,12 +289,158 @@
   </div>
 </div>
 
+<!-- LOG TAB -->
+<div id="log" class="tab">
+  <div class="cal-header">
+    <button class="cal-nav" onclick="prevMonth()">‹</button>
+    <h2 id="cal-title"></h2>
+    <button class="cal-nav" onclick="nextMonth()">›</button>
+  </div>
+  <div class="cal-summary" id="cal-summary"></div>
+  <div class="cal-grid" id="cal-grid"></div>
+  <div class="cal-saving" id="cal-saving"></div>
+  <div class="cal-token"><button onclick="resetToken()">⚙ reset token</button></div>
+</div>
+
 <script>
   function show(id) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     event.target.classList.add('active');
+  }
+
+  // ── Calendar / Log ────────────────────────────────────────────────────────
+  const REPO = 'adlerxie/workout-audio';
+  const FILE = 'progress.json';
+  const SESSIONS = { 1: 'Back', 2: 'Hips', 4: 'Push', 5: 'Core' };
+
+  let completions = {};
+  let calYear, calMonth, calInited = false;
+
+  function getToken() {
+    let t = localStorage.getItem('gh_token');
+    if (!t) {
+      t = prompt('Paste your GitHub personal access token (needs repo write access):');
+      if (t) localStorage.setItem('gh_token', t.trim());
+    }
+    return t;
+  }
+
+  function resetToken() {
+    localStorage.removeItem('gh_token');
+    alert('Token cleared. You will be prompted again on next save.');
+  }
+
+  async function loadCompletions() {
+    setStatus('Loading…');
+    try {
+      const r = await fetch(`https://raw.githubusercontent.com/${REPO}/main/${FILE}?t=${Date.now()}`);
+      const d = await r.json();
+      completions = d.completions || {};
+    } catch(e) { completions = {}; }
+    setStatus('');
+    renderCal();
+  }
+
+  async function saveCompletions() {
+    const token = getToken();
+    if (!token) return;
+    setStatus('Saving…');
+    try {
+      const content = btoa(JSON.stringify({ completions }, null, 2));
+      const meta = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+        headers: { Authorization: `token ${token}` }
+      });
+      const { sha } = await meta.json();
+      await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE}`, {
+        method: 'PUT',
+        headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: 'log workout', content, sha })
+      });
+      setStatus('Saved ✓');
+    } catch(e) {
+      setStatus('Save failed — check token');
+    }
+    setTimeout(() => setStatus(''), 2000);
+  }
+
+  function setStatus(msg) {
+    document.getElementById('cal-saving').textContent = msg;
+  }
+
+  async function toggleDay(key, dow) {
+    if (!SESSIONS[dow]) return;
+    completions[key] = !completions[key];
+    if (!completions[key]) delete completions[key];
+    renderCal();
+    await saveCompletions();
+  }
+
+  function renderCal() {
+    const today = new Date();
+    const firstDay = new Date(calYear, calMonth, 1);
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+    document.getElementById('cal-title').textContent =
+      firstDay.toLocaleDateString('en', { month: 'long', year: 'numeric' });
+
+    let total = 0, done = 0;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dow = new Date(calYear, calMonth, d).getDay();
+      if (SESSIONS[dow]) {
+        total++;
+        const k = dateKey(calYear, calMonth + 1, d);
+        if (completions[k]) done++;
+      }
+    }
+    document.getElementById('cal-summary').innerHTML =
+      `<strong>${done}</strong> / ${total} sessions completed this month`;
+
+    const startDow = firstDay.getDay();
+    let html = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+      .map(d => `<div class="cal-dow">${d}</div>`).join('');
+
+    for (let i = 0; i < startDow; i++) html += `<div class="cal-day empty"></div>`;
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dow = new Date(calYear, calMonth, d).getDay();
+      const k = dateKey(calYear, calMonth + 1, d);
+      const isToday = today.getFullYear() === calYear && today.getMonth() === calMonth && today.getDate() === d;
+      const isStrength = !!SESSIONS[dow];
+      const isDone = !!completions[k];
+      const label = SESSIONS[dow] || '';
+
+      let cls = 'cal-day';
+      if (!isStrength) cls += ' rest';
+      else cls += ' strength';
+      if (isToday) cls += ' today';
+      if (isDone) cls += ' done';
+
+      const click = isStrength ? `onclick="toggleDay('${k}', ${dow})"` : '';
+      html += `<div class="${cls}" ${click}>
+        ${isDone ? '<span class="cal-check">✓</span>' : ''}
+        <span class="cal-num">${d}</span>
+        ${label ? `<span class="cal-label">${label}</span>` : ''}
+      </div>`;
+    }
+    document.getElementById('cal-grid').innerHTML = html;
+  }
+
+  function dateKey(y, m, d) {
+    return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  }
+
+  function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); }
+  function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); }
+
+  function initCal() {
+    if (calInited) return;
+    calInited = true;
+    const now = new Date();
+    calYear = now.getFullYear();
+    calMonth = now.getMonth();
+    loadCompletions();
   }
 </script>
 
